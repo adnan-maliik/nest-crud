@@ -38,6 +38,7 @@ export class PostService {
     async createPost(loggedUserId:string,post: PostDto) {
         try {
             if(!loggedUserId) throw Error('No loggedUser found!')
+            
             const { title, content} = post;
             return await this.postModel.create({
                 title,

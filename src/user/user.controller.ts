@@ -3,16 +3,16 @@ import {
   Get,
   Delete,
   Param,
-  UseGuards,
   Put,
   Body,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { JwtGuard } from 'src/guards/auth.guard';
 import { UserUpdateDto } from 'src/auth/auth.dto';
+import { SessionGuard } from 'src/guards/session.guard';
 
 @Controller('users')
-@UseGuards(JwtGuard)
+@UseGuards(SessionGuard)
 export class UserController {
     constructor(private userService: UserService) {}
     @Get()

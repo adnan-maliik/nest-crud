@@ -3,7 +3,6 @@ import { PostService } from './post.service';
 import { PostController } from './post.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Post, PostSchema } from 'src/schemas';
-import { AuthJwtService } from 'src/helpers';
 import { UserModule } from 'src/user/user.module';
 
 @Module({
@@ -13,7 +12,6 @@ import { UserModule } from 'src/user/user.module';
     ],
     providers: [
         PostService,
-        AuthJwtService
     ],
     controllers: [PostController],
 })

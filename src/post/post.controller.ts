@@ -12,7 +12,7 @@ import {
 import { PostService } from './post.service';
 import { PostDto, PostUpdateDto } from './post.dto';
 import { User } from 'src/decorators/user.decorator';
-import { JwtGuard } from 'src/guards/auth.guard';
+import { SessionGuard } from 'src/guards/session.guard';
 
 @Controller('posts')
 export class PostController {
@@ -26,20 +26,20 @@ export class PostController {
         return this.postService.findById(id);
     }
 
+    @UseGuards(SessionGuard)
     @Post()
-    @UseGuards(JwtGuard)
     createPost(@Body() post: PostDto, @User('id') loggedUserId: string) {
         return this.postService.createPost(loggedUserId, post);
     }
 
+    @UseGuards(SessionGuard)
     @Put(':id')
-    @UseGuards(JwtGuard)
     updatePost(@Param('id') id: string,@Body() updates:PostUpdateDto) {
         return this.postService.updatePost(id,updates);
     }
+    @UseGuards(SessionGuard)
     @Delete(':id')
     @HttpCode(200)
-    @UseGuards(JwtGuard)
     deletePost(@Param('id') id: string) {
         return this.postService.deletePost(id);
     }
