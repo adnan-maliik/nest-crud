@@ -10,11 +10,16 @@ import {
 import { UserService } from './user.service';
 import { JwtGuard } from 'src/guards/auth.guard';
 import { UserUpdateDto } from 'src/auth/auth.dto';
+import { RolesGuard } from 'src/guards/roles.guard';
+import { Roles } from 'src/decorators/role.decorator';
+import { ROLES } from 'src/schemas';
 
 @Controller('users')
 @UseGuards(JwtGuard)
 export class UserController {
     constructor(private userService: UserService) {}
+    @Roles(ROLES.Admin)
+    @UseGuards(RolesGuard)
     @Get()
     // GET user/
     findAll() {

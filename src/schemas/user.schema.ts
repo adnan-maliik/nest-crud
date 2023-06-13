@@ -2,6 +2,11 @@ import * as bcrypt from 'bcryptjs';
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
+
+export enum ROLES {
+    Admin = 'admin',
+    User = 'user',
+}
 //Use schema
 @Schema(
     //schema config
@@ -28,6 +33,8 @@ export class User {
     email: string;
     @Prop()
     password: string;
+    @Prop({ enum:ROLES, default: ROLES.User })
+    role: string;
 }
 
 // useful type inference
@@ -44,7 +51,7 @@ UserSchema.virtual('fullName').get(function (): string {
 //static method on Model for hashing password
 UserSchema.statics.hashPassword = async function (plainPassword: string) {
     try {
-        return  bcrypt.hash(plainPassword, 10);
+        return bcrypt.hash(plainPassword, 10);
     } catch (error) {
         throw error;
     }
