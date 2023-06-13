@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { PostModule } from './post/post.module';
 import { AuthModule } from './auth/auth.module';
+import { UploadModule } from './upload/upload.module';
 @Module({
     imports: [
         //load env files 🛅
@@ -21,6 +22,8 @@ import { AuthModule } from './auth/auth.module';
         UserModule,
         //posts/* 📑
         PostModule,
+        //uploads/* 📷📂
+        UploadModule,
     ],
 })
 export class AppModule {
@@ -32,3 +35,4 @@ export class AppModule {
     //     })
     // }
 }
+

@@ -23,6 +23,8 @@ export class JwtGuard implements CanActivate {
             let req = host.getRequest();
             //extract bearer token
             let token = req.headers.authorization?.split(' ')[1]
+            console.log(req.headers.authorization);
+            
             if (!token) throw Error('No Token found!');
             //verify token
             let extractedUser = await this.jwtService.verifyToken(

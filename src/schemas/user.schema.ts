@@ -35,6 +35,8 @@ export class User {
     password: string;
     @Prop({ enum:ROLES, default: ROLES.User })
     role: string;
+    @Prop()
+    picUrl:string
 }
 
 // useful type inference

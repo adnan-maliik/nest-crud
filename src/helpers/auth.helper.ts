@@ -6,7 +6,7 @@ type Payload=Record<string, any>
 @Injectable()
 export class AuthJwtService {
     constructor(private jwtService: JwtService) {}
-    getAccessToken(payload: Payload, expiresIn:string='15min'):Promise<string> {
+    getAccessToken(payload: Payload, expiresIn:string='1hr'):Promise<string> {
         return this.jwtService.signAsync(payload,{
             expiresIn,
             secret:process.env.JWT_SECRET
