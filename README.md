@@ -22,7 +22,7 @@ After cloning the repository, navigate to the project directory and install the 
 
 ```
 cd nest-crud
-npm install
+yarn
 ```
 
 Make sure you have Node.js and npm installed on your machine.
@@ -44,7 +44,7 @@ git checkout file-upload
 Once you're on the desired branch, you can run the application using the following command:
 
 ```bash
-npm start
+yarn start:dev
 ```
 
 This will start the NestJS server, and you can access the API endpoints from your browser or API testing tool.
