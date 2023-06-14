@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { PostModule } from './post/post.module';
 import { AuthModule } from './auth/auth.module';
+import { ThrottlerModule } from '@nestjs/throttler';
 @Module({
     imports: [
         //load env files 🛅
@@ -14,6 +15,12 @@ import { AuthModule } from './auth/auth.module';
                 uri: process.env.MONGO_LOCAL_URL,
             }),
         }),
+        ThrottlerModule.forRootAsync({
+            useFactory:()=>({
+              limit:50,
+              ttl:120
+            })
+          }),
         //route modules
         //auth/* 🔓
         AuthModule,

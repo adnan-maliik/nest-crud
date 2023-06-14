@@ -13,7 +13,9 @@ import { PostService } from './post.service';
 import { PostDto, PostUpdateDto } from './post.dto';
 import { User } from 'src/decorators/user.decorator';
 import { JwtGuard } from 'src/guards/auth.guard';
+import { SkipThrottle } from '@nestjs/throttler';
 
+@SkipThrottle(true)
 @Controller('posts')
 export class PostController {
     constructor(private postService: PostService) {}
